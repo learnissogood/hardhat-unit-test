@@ -29,6 +29,8 @@ contract Faucet {
     emit FallbackCalled(msg.sender);
   }
 
+  receive() external payable {}
+
   modifier onlyOwner() {
     require(msg.sender == owner);
     _;

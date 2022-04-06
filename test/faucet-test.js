@@ -47,4 +47,9 @@ describe("This is our main Faucet testing scope", function () {
 
     assert(deployedEvent, "Expected the Fallback Called event to be emitted!");
   });
+
+  it("it should only be call by the owner", async function () {
+    let attacker = ethers.provider.getSigner(10);
+    await expect(faucet.connect(attacker).withdrawAll()).to.be.reverted;
+  });
 });
